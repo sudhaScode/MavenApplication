@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\SUBOMMAS\Swiggy_SDE-Round1_codingTest\.metadata\.plugins\org.eclipse.jdt.core
