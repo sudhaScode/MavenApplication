@@ -7,3 +7,4 @@
 2024-02-17 17:46:34,009 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2024-02-17 17:46:34,009 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SUBOMMAS\Swiggy_SDE-Round1_codingTest\magicalarena\src\main\resources
 2024-02-17 17:46:34,012 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2024-02-17 17:46:34,013 [Worker-16: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\SUBOMMAS\Swiggy_SDE-Round1_codingTest\magicalarena\src\test\resources
