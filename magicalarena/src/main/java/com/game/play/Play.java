@@ -30,9 +30,6 @@ public class Play {
 		//Players in Arena
 		Player PlayerA = new Player(playerAName, 50, 5, 10);
 		Player PlayerB = new Player(playerBName, 100, 10, 5);
-		System.out.println(PlayerA.toString());
-		System.out.println(PlayerB.toString());
-		System.out.println();
 		
 		//Arena
 		Game  arena = new Arena();
