@@ -83,7 +83,8 @@ public class Play {
 			//Fight
 			int damaged =arena.fight(attackDamage, defendStrength);
 			
-			int healthReduced = damaged<Defender.getHealth()?Defender.getHealth()-damaged:damaged-Defender.getHealth();
+			int previousHealth = Defender.getHealth();
+			int healthReduced = Defender.getHealth()-damaged;
 			
 			if(healthReduced >0) {
 				Defender.setHealth(healthReduced);
@@ -94,19 +95,19 @@ public class Play {
 			
 			
 			System.out.println("Damage created by "+Attacker.getName()+" to "+Defender.getName()+": "+damaged);
-			System.out.println("Health of "+Defender.getName()+" reduced to: "+ healthReduced);
+			System.out.println("Health of "+Defender.getName()+" reduced to: "+ healthReduced +" from "+previousHealth);
 			System.out.println();
 			
 		}
 		if(PlayerA.getHealth() == 0) {
-			System.out.println("PlayerA defeated by PlayerB");
+			System.out.println(PlayerA.getName()+" defeated by"+PlayerB.getName());
 			System.out.println();
-			System.out.println("Cheers! PlayerB won the fight: "+PlayerB.toString());
+			System.out.println("Cheers! "+PlayerB.getName()+" won the fight: "+PlayerB.toString());
 		}
 		else {
-			System.out.println("PlayerB defeated by PlayerA");
+			System.out.println(PlayerB.getName()+" defeated by"+PlayerA.getName());
 			System.out.println();
-			System.out.println("Cheers! PlayerA won the fight: "+PlayerA.toString());
+			System.out.println("Cheers! "+PlayerB.getName()+" won the fight: "+PlayerA.toString());
 			
 		}	
 	}
