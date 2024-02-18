@@ -7,12 +7,14 @@ import com.game.player.Player;
 public class Arena extends Game{
 
 	@Override
-	public int fight(int attackDamage, int defendStrength) {
+	public int[] fight(int attackDamage, int defendStrength, int defenderHealth) {
 		// TODO Auto-generated method stub
+		
 		int damaged = defendStrength<attackDamage?attackDamage-defendStrength:defendStrength-attackDamage;
+		int healthReduced = defenderHealth-damaged;
+		int fightResults[] = {damaged, healthReduced};
 		
-		
-		return damaged;
+		return fightResults;
 	}
 
 	@Override
@@ -32,8 +34,14 @@ public class Arena extends Game{
 	}
 
 	@Override
-	public void restart() {
+	public Player winnerDeclaration(Player A, Player B) {
 		// TODO Auto-generated method stub
+		if(A.getHealth() == 0) {
+			return B;
+		}
+		else {
+			return A;			
+		}	
 			
 	}
 }

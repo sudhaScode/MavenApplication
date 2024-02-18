@@ -1,5 +1,6 @@
 package com.game.play;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -24,13 +25,18 @@ public class Play {
 		catch(Exception e){
 			System.out.println("input is incorect, please enter correct names ");
 		}
+		
 		System.out.println();
 		//Players in Arena
 		Player PlayerA = new Player(playerAName, 50, 5, 10);
 		Player PlayerB = new Player(playerBName, 100, 10, 5);
+		System.out.println(PlayerA.toString());
+		System.out.println(PlayerB.toString());
+		System.out.println();
 		
 		//Arena
 		Game  arena = new Arena();
+		
 		
 		
 		while(PlayerA.getHealth()>0 && PlayerB.getHealth() >0) {
@@ -57,14 +63,16 @@ public class Play {
 			
 			//Roll the Dice
 			int  play = 0;
-			try {
-			 System.out.println("Press 1 to start the fight");
-			  play = s.nextInt();
-			  
-			}
-			catch(Exception e){
-				System.out.println("input is incorect, please press 1");
-			}
+			 while (true) {
+		            try {
+		                System.out.println("Press 1 to start the fight");
+		                play = s.nextInt();
+		                break; // Break out of the loop if input is successful
+		            } catch (Exception e) {
+		                System.out.println("Input is incorrect. Please press 1.");
+		                s.nextLine(); // Consume the invalid input
+		            }
+		        }
 			
 			if(play !=1) {
 				System.out.println("Press 1 to start the fight");
@@ -81,10 +89,13 @@ public class Play {
 			int defendStrength = arena.defend(Defender.getStrength(), diceValueForDefender);
 			
 			//Fight
-			int damaged =arena.fight(attackDamage, defendStrength);
+			/* Method fight
+			 * @returns {damaged, healthReduced}
+			 * */
+			int fightResults []=arena.fight(attackDamage, defendStrength, Defender.getHealth());
 			
 			int previousHealth = Defender.getHealth();
-			int healthReduced = Defender.getHealth()-damaged;
+			int healthReduced = fightResults[1];
 			
 			if(healthReduced >0) {
 				Defender.setHealth(healthReduced);
@@ -94,22 +105,15 @@ public class Play {
 			}
 			
 			
-			System.out.println("Damage created by "+Attacker.getName()+" to "+Defender.getName()+": "+damaged);
-			System.out.println("Health of "+Defender.getName()+" reduced to: "+ healthReduced +" from "+previousHealth);
+			System.out.println("Damage created by "+Attacker.getName()+" to "+Defender.getName()+": "+fightResults[0]);
+			System.out.println("Health of "+Defender.getName()+" reduced to: "+ Defender.getHealth() +" from "+previousHealth);
 			System.out.println();
 			
 		}
-		if(PlayerA.getHealth() == 0) {
-			System.out.println(PlayerA.getName()+" defeated by"+PlayerB.getName());
-			System.out.println();
-			System.out.println("Cheers! "+PlayerB.getName()+" won the fight: "+PlayerB.toString());
-		}
-		else {
-			System.out.println(PlayerB.getName()+" defeated by"+PlayerA.getName());
-			System.out.println();
-			System.out.println("Cheers! "+PlayerB.getName()+" won the fight: "+PlayerA.toString());
+		//Winner Decalration
+		Player winner = arena.winnerDeclaration(PlayerA, PlayerB);
+		System.out.println("Cheers! "+winner.getName()+" won the fight: "+winner.toString());
 			
-		}	
 	}
 
 }
